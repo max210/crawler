@@ -35,7 +35,7 @@ function timeout(delay) {
     const page = await browser.newPage()
     await page.goto(`${indexPage[i].href}`, {waitUntil: 'networkidle2'})
     await timeout(2000)  //以防页面加载不好，延迟2s
-    await page.pdf({path: `./${indexPage[i].name}.pdf`})  //生产对应名称的pdf文件
+    await page.pdf({path: `./result/${indexPage[i].name}.pdf`})  //生产对应名称的pdf文件
   }
 
   await browser.close()  //关闭browser实例
