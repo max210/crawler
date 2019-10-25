@@ -166,7 +166,6 @@ const task = async () => {
     resultArr.push(charObj5)
   }
 
-  console.log(resultArr)
   fs.writeFile('./result/result.json', JSON.stringify(resultArr), err => {
     console.log(err)
   })

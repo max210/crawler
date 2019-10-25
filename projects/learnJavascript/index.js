@@ -20,7 +20,7 @@ function timeout(delay) {
   let indexPage = await page.evaluate(() => {
     let $ = window.$  //在console中看到有jquery，所以偷懒用jquery选择元素
     let items = $('.columns > ul li a')  //用jquery取出a标签
-    let itemsList = Array.prototype.slice.call(items)  //转化为一个真正的数组
+    let itemsList = Array.from(items)  //转化为一个真正的数组
 
     return itemsList.map(item => {  //返回一个新数组
       return {
