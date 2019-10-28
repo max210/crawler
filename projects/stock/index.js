@@ -46,11 +46,4 @@ async function task() {
   }
 }
 
-function schedule() {
-  task()
-  setTimeout(() {
-    schedule()
-  }, 1000 * 60 * 60 * 24);
-}
-
-schedule()
+task()
