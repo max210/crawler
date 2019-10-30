@@ -24,7 +24,7 @@ const companyList = [
   }
 ]
 const scheduleJobRule = { hour: 14, minute: 0, second: 0 }
-const MAX_RETRY_TIME = 2
+const MAX_RETRY_TIME = 5
 let retryTime = 0
 
 function sendMessage(message) {
@@ -51,7 +51,7 @@ async function task() {
       await page.waitForSelector('#last', { timeout: 60000, visible: true })
       const price = await page.$eval('#last', el => el.innerText)
       result += `
-${companyList[i].name}（${companyList[i].targetPrice}） 现价：${price && price.slice(0, -1)}`
+${companyList[i].name}${companyList[i].targetPrice}  现价: ${price && price.slice(0, -1)}`
     }
 
     sendMessage(result)
@@ -67,4 +67,5 @@ ${companyList[i].name}（${companyList[i].targetPrice}） 现价：${price && pr
   }
 }
 
-schedule.scheduleJob(scheduleJobRule, task)
+// schedule.scheduleJob(scheduleJobRule, task)
+task()
