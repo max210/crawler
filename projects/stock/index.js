@@ -2,8 +2,10 @@
 
 const puppeteer = require('puppeteer')
 const schedule = require('node-schedule')
+const axios = require('axios')
 
 const URL = 'http://quote.cfi.cn/'
+const NOTICE_URL = 'https://oapi.dingtalk.com/robot/send?access_token=2d15d060f3251d9b25de2c4dae05be3ca6ec4a11718a0cc048490f127cde3e00'
 const companyList = [
   {
     id: '600741',
@@ -25,6 +27,16 @@ const scheduleJobRule = { hour: 14, minute: 0, second: 0 }
 const MAX_RETRY_TIME = 2
 let retryTime = 0
 
+function sendMessage(message) {
+  axios.post(NOTICE_URL, {
+    msgtype: 'text',
+    text: {
+      content: `通知：${message}`
+    }
+  })
+  .catch(console.log)
+}
+
 async function task() {
   try {
     const browser = await puppeteer.launch()
@@ -39,11 +51,10 @@ async function task() {
       await page.waitForSelector('#last', { timeout: 60000, visible: true })
       const price = await page.$eval('#last', el => el.innerText)
       result += `
-        ${companyList[i].name}（${companyList[i].targetPrice}） 现价：${price && price.slice(0, -1)}
-      `
+${companyList[i].name}（${companyList[i].targetPrice}） 现价：${price && price.slice(0, -1)}`
     }
 
-    console.log(result)
+    sendMessage(result)
     await browser.close()  //关闭browser实例
     retryTime = 0
   } catch (e) {
@@ -51,7 +62,7 @@ async function task() {
       retryTime += 1
       task()
     } else {
-      console.log('err', e)
+      sendMessage('获取失败')
     }
   }
 }
