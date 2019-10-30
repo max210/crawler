@@ -67,5 +67,4 @@ ${companyList[i].name}${companyList[i].targetPrice}  现价: ${price && price.sl
   }
 }
 
-// schedule.scheduleJob(scheduleJobRule, task)
-task()
+schedule.scheduleJob(scheduleJobRule, task)
