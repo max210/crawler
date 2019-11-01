@@ -23,7 +23,7 @@ const companyList = [
     targetPrice: 43
   }
 ]
-const scheduleJobRule = { hour: 14, minute: 0, second: 0 }
+const scheduleJobRule = { dayOfWeek: [new schedule.Range(1, 5)], hour: 14, minute: 0, second: 0 }
 const MAX_RETRY_TIME = 5
 let retryTime = 0
 
