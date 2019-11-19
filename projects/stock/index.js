@@ -61,8 +61,7 @@ ${companyList[i].name}${companyList[i].targetPrice}  现价: ${price && price.sl
     await page1.waitForSelector('#changeP', { timeout: 60000, visible: true })
     const indexPrice = await page1.$eval('#price', el => el.innerText)
     const upOrDown = await page1.$eval('#changeP', el => el.innerText)
-    result = `
-上证：${indexPrice} ${upOrDown.slice(0, 1)} ${result}`
+    result = `上证：${indexPrice} ${upOrDown.slice(0, 1)} ${result}`
 
     sendMessage(result)
     await browser.close()  //关闭browser实例
