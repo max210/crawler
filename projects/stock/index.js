@@ -22,6 +22,16 @@ const companyList = [
     id: '600585',
     name: '海螺水泥',
     targetPrice: 43
+  },
+  {
+    id: '002507',
+    name: '涪陵榨菜',
+    targetPrice: 22
+  },
+  {
+    id: '000895',
+    name: '双汇发展',
+    targetPrice: 22
   }
 ]
 const scheduleJobRule = { dayOfWeek: [new schedule.Range(1, 5)], hour: 14, minute: 0, second: 0 }
