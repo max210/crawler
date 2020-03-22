@@ -14,6 +14,6 @@
     "puppeteer": "^1.2.0"
   },
   "devDependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.18.1"
   }
 }
